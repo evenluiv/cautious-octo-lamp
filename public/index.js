@@ -4,20 +4,17 @@ document.getElementById('get-info').addEventListener("click", function() {
 
     console.log(apiUrl)
 
-    // Clear previous error message
     document.getElementById('error-message').textContent = '';
 
-    // Fetch the data from the PHP API with the provided API key
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
-                // Display error if the API key is invalid
                 document.getElementById('error-message').textContent = data.error;
             } else {
-                // Call functions to process and display the data in charts
                 createCategoryPieChart(data);
                 createPriceRangeBarChart(data);
+                createDiscountLineChart(data);
             }
         })
         .catch(error => {
@@ -77,6 +74,51 @@ function createPriceRangeBarChart(data) {
                 data: Object.values(priceRanges),
                 backgroundColor: '#36A2EB'
             }]
+        }
+    });
+}
+
+function createDiscountLineChart(data) {
+    const discountLabels = [];
+    const discountData = [];
+
+    data.forEach(category => {
+        category.products.forEach(product => {
+            if (product.discount > 0) {
+                discountLabels.push(`${category.category} - ${product.name}`);
+                discountData.push(product.discount);
+            }
+        });
+    });
+
+    const ctx = document.getElementById('discountChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: discountLabels,
+            datasets: [{
+                label: 'Discount Amount (%)',
+                data: discountData,
+                borderColor: '#FF6384',
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Discount Percentage (%)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Product Name / Category'
+                    }
+                }
+            }
         }
     });
 }
