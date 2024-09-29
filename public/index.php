@@ -174,8 +174,7 @@ if (php_sapi_name() !== 'cli') {
         echo json_encode($result);
         exit;
     } else {
-        header('Content-Type: application/json');
-        echo json_encode(['error' => 'Invalid request. Please provide url and api_key']);
+        echo file_get_contents(__DIR__ . '/index.html');
         exit;
     }
 }
