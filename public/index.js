@@ -16,7 +16,8 @@ document.getElementById('get-info').addEventListener("click", function() {
                 document.getElementById('error-message').textContent = data.error;
             } else {
                 // Call functions to process and display the data in charts
-                createCategoryPieChart(data);;
+                createCategoryPieChart(data);
+                createPriceRangeBarChart(data);
             }
         })
         .catch(error => {
@@ -44,6 +45,37 @@ function createCategoryPieChart(data) {
                 label: 'Products per Category',
                 data: productCounts,
                 backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#96f04c', '#ab7f68']
+            }]
+        }
+    });
+}
+
+function createPriceRangeBarChart(data) {
+    const priceRanges = { '0-100': 0, '100-500': 0, '500-1000': 0, '1000+': 0 };
+
+    data.forEach(category => {
+        category.products.forEach(product => {
+            const price = product.price;
+            if (price <= 100) {
+                priceRanges['0-100']++;
+            } else if (price <= 500) {
+                priceRanges['100-500']++;
+            } else if (price <= 1000) {
+                priceRanges['500-1000']++;
+            } else {
+                priceRanges['1000+']++;
+            }
+        });
+    });
+
+    const ctx = document.getElementById('priceRangeChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(priceRanges),
+            datasets: [{
+                data: Object.values(priceRanges),
+                backgroundColor: '#36A2EB'
             }]
         }
     });
