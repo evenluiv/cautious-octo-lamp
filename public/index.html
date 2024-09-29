@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Lumav praktika</title>
 </head>
 <body>
@@ -14,21 +15,24 @@
         <button id="get-info">Saada päring</button>
     </div>
     <div id="error-message" style="color: red"></div>
-    <div id="info-container" style="display:grid">
-
-        <div>
-            <h2>Tooteid kategooria kohta:</h2>
-            <canvas id="categoryChart" width="400" height="400"></canvas>
-        </div>
-
-        <div>
-            <h2>Hinnaklassi jaotuse graafik</h2>
-            <canvas id="priceRangeChart" width="400" height="400"></canvas>
-        </div>
     
-        <div>
-            <h2>Allahindluste levik</h2>
-            <canvas id="discountChart" width="400" height="400"></canvas>
+    <div id="info-container">
+
+        <div id="category-price-container">
+            <div id="category-container">
+                <h2>Tooteid kategooria kohta:</h2>
+                <canvas id="categoryChart" width="400" height="400"></canvas>
+            </div>
+
+            <div id="price-container">
+                <h2>Hinnaklassi jaotuse graafik:</h2>
+                <canvas id="priceRangeChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+        <div id="discount-container">
+            <h2>Allahindluste levik:</h2>
+            <canvas id="discountChart" width="800" height="650"></canvas>
         </div>
 
     </div>

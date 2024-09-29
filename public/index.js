@@ -97,7 +97,7 @@ function createDiscountLineChart(data) {
         data: {
             labels: discountLabels,
             datasets: [{
-                label: 'Discount Amount (%)',
+                label: 'Discount Amount (€)',
                 data: discountData,
                 borderColor: '#FF6384',
                 fill: false
@@ -109,7 +109,7 @@ function createDiscountLineChart(data) {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Discount Percentage (%)'
+                        text: 'Discount Amount (€)'
                     }
                 },
                 x: {
