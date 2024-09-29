@@ -2,6 +2,8 @@
 
 ## Kuidas programmi jooksutada
 
+### API võti: asd123
+
 Konsooli:
 ```
 sudo apt install php-common libapache2-mod-php php-cli
