@@ -97,7 +97,7 @@ function createDiscountLineChart(data) {
         data: {
             labels: discountLabels,
             datasets: [{
-                label: 'Discount Amount (€)',
+                label: 'Allahindluse suurus (€)',
                 data: discountData,
                 borderColor: '#FF6384',
                 fill: false
@@ -109,13 +109,13 @@ function createDiscountLineChart(data) {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Discount Amount (€)'
+                        text: 'Allahindluse suurus (€)'
                     }
                 },
                 x: {
                     title: {
                         display: true,
-                        text: 'Product Name / Category'
+                        text: 'Toote nimi'
                     }
                 }
             }
